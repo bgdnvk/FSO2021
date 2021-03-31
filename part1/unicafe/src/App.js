@@ -21,11 +21,14 @@ const Feedback = ({good, setGood, bad,
   )
 }
 
-const Stat = ({stat, text}) => {
+const Statistic = ({stat, text}) => {
   return(
-    <div>
-      <p>{text} {stat}</p>
-    </div>
+    <tr>
+      <td>{text}</td>
+      <td>
+        {stat}
+      </td>
+    </tr>
   )
 }
 
@@ -33,27 +36,38 @@ const Statistics = ({good, bad, neutral}) => {
   calculations.good = good;
   calculations.neutral = neutral;
   calculations.bad = bad;
+
+  let sumTotal = calculations.sumTotal()
+  let calcAverage = toFixedDec(calculations.calcAverage())
+  let calcPositive = toFixedDec(calculations.calcPositive())
+
+  if(!good && !bad && !neutral){
+    return(
+      <div>
+        <p>No Feedback Given</p>
+      </div>
+    )
+  }
   return(
-    <div>
-      <Stat 
+    <table>
+     <tbody>
+      <Statistic 
       text={"good"} stat={good}
-      ></Stat>
-      <Stat
+      ></Statistic>
+      <Statistic
       text={"neutral"} stat={neutral}
-      ></Stat>
-      <Stat
+      ></Statistic>
+      <Statistic
       text={"bad"} stat={bad}
-      ></Stat>
-      <div>
-        all {calculations.sumTotal()}
-      </div>
-      <div>
-        average {toFixedDec(calculations.calcAverage())}
-      </div>
-      <div>
-        positive {toFixedDec(calculations.calcPositive())} %
-      </div>
-    </div>
+      ></Statistic>
+
+      <Statistic text={"all"} stat={sumTotal}></Statistic>
+
+      <Statistic text="average" stat={calcAverage}></Statistic>
+
+      <Statistic text="positive" stat={calcPositive}></Statistic>
+      </tbody>
+    </table>
   )
 }
 
