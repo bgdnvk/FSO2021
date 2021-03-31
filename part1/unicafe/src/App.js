@@ -51,7 +51,7 @@ const Statistics = ({good, bad, neutral}) => {
         average {toFixedDec(calculations.calcAverage())}
       </div>
       <div>
-        positive {toFixedDec(calculations.calcPositive())}
+        positive {toFixedDec(calculations.calcPositive())} %
       </div>
     </div>
   )
