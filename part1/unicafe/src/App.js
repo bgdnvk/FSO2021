@@ -30,6 +30,9 @@ const Stat = ({stat, text}) => {
 }
 
 const Statistics = ({good, bad, neutral}) => {
+  calculations.good = good;
+  calculations.neutral = neutral;
+  calculations.bad = bad;
   return(
     <div>
       <Stat 
@@ -41,11 +44,29 @@ const Statistics = ({good, bad, neutral}) => {
       <Stat
       text={"bad"} stat={bad}
       ></Stat>
+      <div>
+        all {calculations.sumTotal()}
+      </div>
+      <div>
+        average {toFixedDec(calculations.calcAverage())}
+      </div>
+      <div>
+        positive {toFixedDec(calculations.calcPositive())}
+      </div>
     </div>
   )
 }
 
 const addClicked = (state, setState) => setState(state +1);
+const toFixedDec = (num) => Number.parseFloat(num).toFixed(2);
+
+const calculations = {
+  good: 0, neutral: 0, bad: 0,
+  sumTotal(){ return this.good+this.neutral+this.bad },
+  calcAverage(){
+    return (this.good + this.bad*-1)/(this.good+this.neutral+this.bad) || 0},
+  calcPositive(){return (this.good*(100/(this.good+this.neutral+this.bad))) || 0}
+}
 
 const App = () => {
   // save clicks of each button to its own state
