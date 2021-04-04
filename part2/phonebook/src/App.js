@@ -24,10 +24,10 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
 
-  const hooks = {newName: newName, 
-    setNewName: setNewName,
-    newNumber: newNumber,
-    setNewNumber: setNewNumber }
+  const hooks = {newName, 
+    setNewName,
+    newNumber,
+    setNewNumber}
   // - hooks
 
   // -- functions
@@ -37,6 +37,7 @@ const App = () => {
     if(checkDupe(persons, newName)){
       alert(`${newName} is already added to phonebook`)
       setNewName('')
+      setNewNumber('')
       return
     }
 
