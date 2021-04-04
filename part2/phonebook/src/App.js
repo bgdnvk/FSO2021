@@ -8,6 +8,13 @@ const App = () => {
 
   const addNote = (e) => {
     e.preventDefault()
+
+    if(checkDupe(persons, newName)){
+      alert(`${newName} is already added to phonebook`)
+      setNewName('')
+      return
+    }
+
     const newNameObj = {
       name: newName
     }
@@ -22,6 +29,7 @@ const App = () => {
     console.log("namechange", e.target.value);
     setNewName(e.target.value)
   }
+  const checkDupe = (arr, newName) => arr.find( fullname => fullname.name === newName)
 
   return (
     <div>
