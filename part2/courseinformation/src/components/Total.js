@@ -5,7 +5,6 @@ const Total = ({course}) => {
     const sumParts = parts.reduce((acc, part) => {
         return acc + part.exercises
     }, 0)
-    console.log(sumParts);
 
     return(
         <div>
