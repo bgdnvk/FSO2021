@@ -1,40 +1,9 @@
 import React from 'react'
 
-const Header = (props) => {
-  return(
-    <div>
-      <h1>
-        {props.course}
-      </h1>
-    </div>
-  )
-}
+import Header from './components/Header'
+import Content from './components/Content'
+import Total from './components/Total'
 
-const Part = (props) => {
-  return(
-    <div>
-      <p>{props.part} {props.exercise}</p>
-    </div>
-  )
-}
-
-const Content = (props) => {
-  return(
-    <div>
-      <Part part={props.part1} exercise={props.exercises1}></Part>
-      <Part part={props.part2} exercise={props.exercises2}></Part>
-      <Part part={props.part3} exercise={props.exercises3}></Part>
-    </div>
-  )
-}
-
-const Total = (props) => {
-  return(
-    <div>
-      <p>Number of exercises {props.exercises1+props.exercises2+props.exercises3}</p>
-    </div>
-  )
-}
 
 const App = () => {
   const course = {
