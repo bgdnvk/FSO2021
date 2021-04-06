@@ -5,12 +5,6 @@ const Form = ({hooks, handleChange, addNote}) => {
     return(
         <form onSubmit={addNote}>
         <Inputform
-        text= {"filter shows with "}
-        handleChange={(e) => handleChange(e, hooks.setQuery)}
-        value={hooks.query}
-        ></Inputform>
-
-        <Inputform
         text = {"name: "}
         handleChange={(e) => handleChange(e, hooks.setNewName)}
         value={hooks.newName}
