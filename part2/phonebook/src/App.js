@@ -1,16 +1,8 @@
 import React, { useState } from 'react'
 import Form from './components/Form'
 import Header from './components/Header'
+import DisplayData from './components/DisplayData'
 
-const DisplayData = ({arr}) => {
-  return(
-    <div>
-      {arr.map( entry => <div> {entry.name} - {entry.number}</div>)}
-    </div>
-  )
-  
-
-}
 
 const App = () => {
   // - data
@@ -23,11 +15,16 @@ const App = () => {
   // - hooks
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
+  const [ query, setQuery ] = useState('')
 
-  const hooks = {newName, 
+  const hooks = {
+    newName, 
     setNewName,
     newNumber,
-    setNewNumber}
+    setNewNumber,
+    query,
+    setQuery
+  }
   // - hooks
 
   // -- functions
@@ -62,11 +59,11 @@ const App = () => {
  
   return (
     <div>
-      <Header text={"Phonebook"}></Header>
+      <Header text={"add new"}></Header>
       <Form hooks={hooks} handleChange={handleChange}
       addNote={addNote}></Form>
       <Header text={"Numbers"}></Header>
-      <DisplayData arr={persons}></DisplayData>
+      <DisplayData arr={persons} query={query}></DisplayData>
     </div>
   )
 }
