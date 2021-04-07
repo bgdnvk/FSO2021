@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import Form from './components/Form'
 import Header from './components/Header'
 import DisplayData from './components/DisplayData'
@@ -7,16 +8,22 @@ import SearchForm from './components/SearchForm'
 
 const App = () => {
   // - data
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456' },
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  ])
+  const [persons, setPersons] = useState([])
   // - hooks
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ query, setQuery ] = useState('')
+
+  const url = 'http://localhost:3001/persons'
+  useEffect(() => {
+    axios
+      .get(url)
+      .then(response => {
+        console.log(response);
+        console.log(response.data);
+        setPersons(response.data)
+      })
+  }, [])
 
   const hooks = {
     newName, 
