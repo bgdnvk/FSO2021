@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import Search from './components/Search'
+import Countries from './components/Countries'
 
 function App() {
   const countriesUrl = 'https://restcountries.eu/rest/v2/all'
@@ -15,9 +17,15 @@ function App() {
   console.log(countries[0]);
   return (
     <div>
-      {
-        countries ? countries[0].name: "loading"
-      }
+      <Search
+      query={query} setQuery={setQuery}
+      ></Search>
+
+      <Countries
+      countries={countries} setCountries={setCountries}
+      query={query}
+      >
+      </Countries>
     </div>
   );
 }
