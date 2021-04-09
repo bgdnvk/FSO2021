@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Countries = ({countries, setCountries, query}) => {
+const Countries = ({countries, query}) => {
 
     if(!countries){
         return(
@@ -9,12 +9,29 @@ const Countries = ({countries, setCountries, query}) => {
             </div>
         )
     }
-    const displayCountries = countries
+
+    
+
+    const searchCountries = (q) => {
+        const countryArr = []
+        for(let country of countries){
+            if(country.name.toLowerCase().includes(q.toLowerCase())){
+                countryArr.push(country.name)
+            }
+        }
+        return countryArr
+    }
+    const queryCountries = searchCountries(query)
+    console.log(queryCountries);
+
+    const displayCountries = (c) => {
+        
+    }
 
 
     return(
         <div>
-            {displayCountries[0].name}
+
         </div>
     )
 }

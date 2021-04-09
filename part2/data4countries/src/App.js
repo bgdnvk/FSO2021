@@ -13,8 +13,8 @@ function App() {
         .get(countriesUrl).then((res) => setCountries(res.data))
   useEffect(effectHook, [])
 
-  console.log(countries);
-  console.log(countries[0]);
+  // console.log(countries);
+  // console.log(countries[0]);
   return (
     <div>
       <Search
@@ -22,7 +22,7 @@ function App() {
       ></Search>
 
       <Countries
-      countries={countries} setCountries={setCountries}
+      countries={countries}
       query={query}
       >
       </Countries>
