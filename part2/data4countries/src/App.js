@@ -3,8 +3,9 @@ import axios from 'axios'
 
 function App() {
   const countriesUrl = 'https://restcountries.eu/rest/v2/all'
-  
+
   const [countries, setCountries] = useState('')
+  const [query, setQuery] = useState('')
 
   const effectHook = () => axios
         .get(countriesUrl).then((res) => setCountries(res.data))
