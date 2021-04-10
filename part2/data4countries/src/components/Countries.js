@@ -12,7 +12,7 @@ const Countries = ({countries, query}) => {
     }
 
     
-
+    //get countries from the query
     const searchCountries = (q) => {
         const countryArr = []
         for(let country of countries){
@@ -25,34 +25,37 @@ const Countries = ({countries, query}) => {
     const queryCountries = searchCountries(query)
     console.log(queryCountries);
 
+    //show countries
     const displayCountries = (countries) => {
-        if(countries.length === 1){
-            //return (<div>{countries[0].name}</div>)
-            return <CoutnryInformation
-            country={countries[0]}
-            ></CoutnryInformation>
-        }
-        if(countries.length <= 10){
-            return(
-                <div>
-                    {countries.map( country => {
-                        console.log(country)
-                        return (
-                            <div key={country.alpha2Code}>
-                                {country.name}
-                            </div>
-                        )
-                    }) }
-                </div>
-            )
-        }
-        else{
-            return(
-                <div>
-                    Too many results..
-                </div>
-            )
-        }
+        return countries.length === 1 ? oneCountry(countries)
+        : countries.length <= 10 ? tenOrLess(countries)
+        : tooMany()
+    }
+
+    const tooMany = () => {
+        console.log("triggered toomany");
+        return ( <div>Too many results...</div>)
+    }
+
+
+    const oneCountry = (countries) => {
+        return <CoutnryInformation
+        country={countries[0]}
+        ></CoutnryInformation>
+    }
+    const tenOrLess = (countries) => {
+        return(
+            <div>
+                {countries.map( country => {
+                    console.log(country)
+                    return (
+                        <div key={country.alpha2Code}>
+                            {country.name}
+                        </div>
+                    )
+                }) }
+            </div>
+        )
     }
 
     return displayCountries(queryCountries)
